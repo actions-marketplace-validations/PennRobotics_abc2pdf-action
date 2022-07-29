@@ -1,0 +1,18 @@
+name: Use existing abc2svg script
+
+# Controls when the workflow will run
+on: workflow_dispatch
+
+jobs:
+  abctopdf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - run: mkdir ${GITHUB_WORKSPACE}/out
+      - run: chmod +x ${GITHUB_WORKSPACE}/abctopdf
+      - run: sh ${GITHUB_WORKSPACE}/abctopdf ${GITHUB_WORKSPACE}/abc/movingpint.abc -o ${GITHUB_WORKSPACE}/out/movingpint.pdf
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Save abc2svg repository and working files locally
