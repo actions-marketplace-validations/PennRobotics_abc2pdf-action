@@ -19,6 +19,7 @@ https://raw.githubusercontent.com/PennRobotics/test-actions-for-abc2svg/main/out
 
 ## TODO
 
+- [ ] create a document containing desired ABC engraving options (the immediate obvious issue is ``measures per line'')
 - [ ] move `abc2svg` files into own subdirectory (not the workspace top-level)
 - [ ] take input file as action argument
 - [ ] assume output has same name (changed to *pdf* extension) unless explicitly given
