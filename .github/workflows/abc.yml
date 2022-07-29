@@ -4,7 +4,7 @@ name: Create and use abc2svg build environment
 on: workflow_dispatch
 
 jobs:
-  build:
+  abctopdf:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
