@@ -18,7 +18,8 @@ jobs:
 
       - run: sudo apt install -y ninja-build
       - run: ninja -v
-        env: NOMIN=1
+        env:
+          NOMIN: 1
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
