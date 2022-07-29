@@ -8,12 +8,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - run: sudo apt install -y fossil
       - run: fossil version
       - run: fossil clone https://chiselapp.com/user/moinejf/repository/abc2svg abc2svg.fossil
       - run: fossil open abc2svg.fossil
       - run: fossil pull
       - run: fossil update
+
+      - run: sudo apt install -y ninja-build
+      - run: ninja -v
+        env: NOMIN=1
+
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Save abc2svg repository and working files locally
