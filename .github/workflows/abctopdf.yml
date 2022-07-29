@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: mkdir ${GITHUB_WORKSPACE}/out
+      - run: mkdir -p ${GITHUB_WORKSPACE}/out
       - run: chmod +x ${GITHUB_WORKSPACE}/abctopdf
       - run: sh ${GITHUB_WORKSPACE}/abctopdf ${GITHUB_WORKSPACE}/abc/movingpint.abc -o ${GITHUB_WORKSPACE}/out/movingpint.pdf
 
