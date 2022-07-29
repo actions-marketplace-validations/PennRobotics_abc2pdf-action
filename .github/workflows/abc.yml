@@ -23,7 +23,7 @@ jobs:
           NOMIN: 1
 
       - run: mkdir -p ${{ github.ref }}/out
-      - run: abctopdf abc/agora.abc -o agora.pdf
+      - run: sh ${{ github.ref }}/abctopdf abc/agora.abc -o agora.pdf
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
