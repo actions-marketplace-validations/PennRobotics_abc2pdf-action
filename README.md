@@ -24,3 +24,4 @@ https://raw.githubusercontent.com/PennRobotics/test-actions-for-abc2svg/main/out
 - [ ] assume output has same name (changed to *pdf* extension) unless explicitly given
 - [ ] create action for batch conversion
 - [ ] possible to call GH action from another repo? (e.g. publish the action) caveat: would require syncing with source repo, possibly difficult to automate unless actions can run on schedule
+- [ ] modify action with `fossil` to detect if the repo is already cloned/opened; if so, skip these lines (conditional rather than manual commenting)
