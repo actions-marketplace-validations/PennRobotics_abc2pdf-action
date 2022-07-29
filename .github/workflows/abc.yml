@@ -9,4 +9,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: sudo apt install -y fossil
-      - run: fossil --version
+      - run: fossil version
