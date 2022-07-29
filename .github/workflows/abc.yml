@@ -22,9 +22,9 @@ jobs:
         env:
           NOMIN: 1
 
-      - run: mkdir -p ${{ github.ref }}/out
+      - run: mkdir ${GITHUB_WORKSPACE}/out
       - run: chmod +x ${GITHUB_WORKSPACE}/abctopdf
-      - run: sh ${GITHUB_WORKSPACE}/abctopdf ${{ github.ref }}/abc/agora.abc -o ${{ github.ref }}/out/agora.pdf
+      - run: sh ${GITHUB_WORKSPACE}/abctopdf ${GITHUB_WORKSPACE}/abc/agora.abc -o ${GITHUB_WORKSPACE}/out/agora.pdf
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
