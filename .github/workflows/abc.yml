@@ -11,7 +11,8 @@ jobs:
 
       - run: sudo apt install -y fossil
       - run: fossil version
-      - run: fossil clone https://chiselapp.com/user/moinejf/repository/abc2svg abc2svg.fossil
+      # Comment out `clone` if the repository already exists locally
+#      - run: fossil clone https://chiselapp.com/user/moinejf/repository/abc2svg abc2svg.fossil
       - run: fossil open abc2svg.fossil
       - run: fossil pull
       - run: fossil update
