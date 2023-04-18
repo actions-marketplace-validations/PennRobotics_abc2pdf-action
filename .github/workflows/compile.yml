@@ -25,10 +25,12 @@ jobs:
         run: cd abcm2ps && ./configure
 
       - name: make
-        run: make -C abcm2ps
+        run: make -C abcm2ps CFLAGS=-DA4_FORMAT=1
+        
+      - name: move abcm2ps out of submodule directory
+        run: mkdir -p converter && mv abcm2ps/abcm2ps converter/
 
-      - name: Upload
-        uses: actions/upload-artifact@v1
+      - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          path: ./abcm2ps/abcm2ps
-          name: abcm2ps
+          commit_message: Commit compiled abcm2ps (A4 output)
+          file_pattern: converter/abcm2ps
