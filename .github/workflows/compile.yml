@@ -22,10 +22,10 @@ jobs:
         run: sudo apt-get install build-essential
 
       - name: configure
-        run: cd abcm2ps && ./configure
+        run: cd abcm2ps && pwd && ./configure
 
       - name: make
-        run: make
+        run: pwd && make
 
       - name: Upload
         uses: actions/upload-artifact@v1
