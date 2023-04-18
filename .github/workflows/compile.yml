@@ -1,0 +1,32 @@
+name: compile abcm2ps
+
+on:
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    name: Build abcm2ps
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Prepare compilation prerequisites
+        run: sudo apt-get install build-essential
+
+      - name: configure
+        run: ./abcm2ps/configure
+
+      - name: make
+        run: make -C ./abcm2ps
+
+      - name: Upload
+        uses: actions/upload-artifact@v1
+        with:
+          path: ./abcm2ps/abcm2ps
+          name: abcm2ps
