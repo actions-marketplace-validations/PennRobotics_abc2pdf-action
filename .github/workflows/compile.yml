@@ -30,7 +30,10 @@ jobs:
       - name: move abcm2ps out of submodule directory
         run: mkdir -p converter && mv abcm2ps/abcm2ps converter/
 
+      - name: create version snippet
+        run: converter/abcm2ps -V > converter/version.txt
+
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Commit compiled abcm2ps (A4 output)
-          file_pattern: converter/abcm2ps
+          file_pattern: 'converter/abcm2ps converter/version.txt'
