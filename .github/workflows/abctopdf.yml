@@ -9,17 +9,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      #- run: sudo apt-get update
-      - run: sudo apt-get install -y --no-install-recommends ghostscript
+      - uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: ghostscript
       - run: chmod +x converter/abcm2ps
       - run: mkdir -p out
       - run: |
           for abcfile in in/*.abc; do \
-              echo "${abcfile##*/}"; \
-              [ -e "out/${abcfile}.pdf" ] || continue; \
-              converter/abcm2ps in/$abcfile.abc; \
-              ps2pdf $abcfile.ps out/$abcfile.pdf; \
-              rm $abcfile.ps; \
+              echo ""; \
+              [ -e "out/${abcfile##*/}.pdf" ] || continue; \
+              converter/abcm2ps $abcfile; \
+              ps2pdf ${abcfile##*/}.ps out/${abcfile##*/}.pdf; \
+              rm ${abcfile##*/}.ps; \
           done
 
       - uses: stefanzweifel/git-auto-commit-action@v4
