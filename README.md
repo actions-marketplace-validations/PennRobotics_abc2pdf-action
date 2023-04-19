@@ -7,6 +7,7 @@ _Github Action for Engraving Sheet Music from ABC_
 
 * Fork, clone, or import the [abc2pdf-action repository](https://github.com/PennRobotics/abc2pdf-action.git)
 * Upload **.abc** files into `in/`
+* The upload should automatically trigger the GitHub Actions for compiling the latest converter source and converting each input document
 * Monitor the status of the document conversion in the GitHub _Actions_ tab
 * If an error occurs, [open an issue](https://github.com/PennRobotics/abc2pdf-action/issues/new/choose)
 * Generated PDF output shall upload after a short delay into `out/` with the same filename base as each input
