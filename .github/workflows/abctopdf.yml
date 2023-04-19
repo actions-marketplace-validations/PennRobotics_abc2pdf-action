@@ -11,12 +11,15 @@ jobs:
 
       - run: pwd
       - run: echo ${GITHUB_WORKSPACE}
+      - run: apt-get install ghostscript ps2pdf
       - run: chmod +x converter/abcm2ps
       - run: mkdir -p out
       - run: |
           for abcfile in in/*.abc; do \
               [ -e "out/$abcfile.pdf" ] || continue \
-              converter/abcm2ps in/$abcfile.abc -o out/$abcfile.pdf ; \
+              converter/abcm2ps in/$abcfile.abc \
+              ps2pdf $abcfile.ps $abcfile.pdf
+              rm $abcfile.ps; \
           done
 
       - uses: stefanzweifel/git-auto-commit-action@v4
