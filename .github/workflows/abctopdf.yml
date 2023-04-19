@@ -11,7 +11,7 @@ jobs:
 
       - run: pwd
       - run: echo ${GITHUB_WORKSPACE}
-      - run: apt-get install ghostscript ps2pdf
+      - run: sudo apt-get install -y ghostscript ps2pdf
       - run: chmod +x converter/abcm2ps
       - run: mkdir -p out
       - run: |
