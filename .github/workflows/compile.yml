@@ -1,7 +1,6 @@
 name: Compile abcm2ps
 
-on:
-  workflow_dispatch:
+on: workflow_call
 
 defaults:
   run:
