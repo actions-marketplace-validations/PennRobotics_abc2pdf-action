@@ -1,0 +1,30 @@
+name: Manual conversion of ABC to PDF
+
+on:
+  workflow_dispatch:
+    inputs:
+      filename:
+        type: string
+        description: ABC name without path or extension
+        required: true
+
+jobs:
+  abctopdf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: ghostscript
+      - run: chmod +x converter/abcm2ps
+      - run: mkdir -p out
+      - run: |
+            [ -e "out/${{ github.event.inputs.filename }}.pdf" ] && error 1 ; \
+            converter/abcm2ps in/${{ github.event.inputs.filename }}.abc ; \
+            ps2pdf Out.ps "out/${{ github.event.inputs.filename }}.pdf" ; \
+            rm Out.ps; \
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Save generated PDF
