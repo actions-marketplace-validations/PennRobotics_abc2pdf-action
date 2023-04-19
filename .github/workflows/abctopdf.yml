@@ -1,4 +1,4 @@
-name: Use existing abc2svg script
+name: Convert ABC to PDF
 
 # Controls when the workflow will run
 on: workflow_dispatch
