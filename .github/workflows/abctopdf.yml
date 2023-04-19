@@ -17,9 +17,9 @@ jobs:
       - run: mkdir -p out
       - run: |
           for abcfile in in/*.abc; do \
-              [ -e "out/${${abcfile##*/}%.abc}.pdf" ] && continue; \
+              [ -e "out/`basename $abcfile abc`.pdf" ] && continue; \
               converter/abcm2ps $abcfile; \
-              ps2pdf Out.ps "out/${${abcfile##*/}%.abc}.pdf"; \
+              ps2pdf Out.ps "out/`basename $abcfile abc`.pdf"; \
               rm Out.ps; \
           done
 
