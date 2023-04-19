@@ -1,4 +1,4 @@
-name: compile abcm2ps
+name: Compile abcm2ps
 
 on:
   workflow_dispatch:
