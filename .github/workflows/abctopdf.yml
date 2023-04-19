@@ -9,7 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: sudo apt-get update
       - uses: awalsh128/cache-apt-pkgs-action@latest
         with:
           packages: ghostscript
@@ -17,9 +16,9 @@ jobs:
       - run: mkdir -p out
       - run: |
           for abcfile in in/*.abc; do \
-              [ -e "out/`basename $abcfile abc`.pdf" ] && continue; \
+              [ -e "out/`basename $abcfile .abc`.pdf" ] && continue; \
               converter/abcm2ps $abcfile; \
-              ps2pdf Out.ps "out/`basename $abcfile abc`.pdf"; \
+              ps2pdf Out.ps "out/`basename $abcfile .abc`.pdf"; \
               rm Out.ps; \
           done
 
