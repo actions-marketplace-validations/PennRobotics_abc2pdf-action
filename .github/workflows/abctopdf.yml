@@ -16,7 +16,7 @@ jobs:
       - run: |
           for abcfile in in/*.abc; do \
               [ -e "out/$abcfile.pdf" ] || continue \
-              converter/abcm2ps in/$abcfile.abc -o out/$abcfile.pdf \
+              converter/abcm2ps in/$abcfile.abc -o out/$abcfile.pdf ; \
           done
 
       - uses: stefanzweifel/git-auto-commit-action@v4
