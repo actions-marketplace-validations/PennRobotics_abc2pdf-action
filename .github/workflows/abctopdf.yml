@@ -11,7 +11,8 @@ jobs:
 
       - run: pwd
       - run: echo ${GITHUB_WORKSPACE}
-      - run: sudo apt-get install -y ghostscript
+      - run: sudo apt-get update
+      - run: sudo apt-get install -y --no-install-recommends ghostscript
       - run: chmod +x converter/abcm2ps
       - run: mkdir -p out
       - run: |
