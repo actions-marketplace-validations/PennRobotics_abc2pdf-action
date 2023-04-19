@@ -20,7 +20,7 @@ jobs:
       - run: chmod +x converter/abcm2ps
       - run: mkdir -p out
       - run: |
-            [ -e "out/${{ github.event.inputs.filename }}.pdf" ] && error 1 ; \
+            [ -e "in/${{ github.event.inputs.filename }}.abc" ] || exit 1 ; \
             converter/abcm2ps in/${{ github.event.inputs.filename }}.abc ; \
             ps2pdf Out.ps "out/${{ github.event.inputs.filename }}.pdf" ; \
             rm Out.ps; \
