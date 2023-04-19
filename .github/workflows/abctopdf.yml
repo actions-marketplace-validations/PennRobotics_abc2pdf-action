@@ -19,7 +19,7 @@ jobs:
           for abcfile in in/*.abc; do \
               [ -e "out/${${abcfile##*/}%.abc}.pdf" ] && continue; \
               converter/abcm2ps $abcfile; \
-              ps2pdf Out.ps out/${${abcfile##*/}%.abc}.pdf; \
+              ps2pdf Out.ps "out/${${abcfile##*/}%.abc}.pdf"; \
               rm Out.ps; \
           done
 
