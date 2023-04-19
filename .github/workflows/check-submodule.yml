@@ -16,7 +16,8 @@ jobs:
 
       - name: If SHA does not match or does not exist, compile and write current SHA to repo
         run: |
-          diff -N -q submodule-sha-cmp.txt submodule-sha.txt > /dev/null ||
+          diff -N -q submodule-sha-cmp.txt submodule-sha.txt > /dev/null &&
+          echo Compiled binary uses latest source ||
           {
             echo make
             echo cp submodule-sha-cmp.txt submodule-sha.txt
