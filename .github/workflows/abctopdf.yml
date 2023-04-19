@@ -1,0 +1,24 @@
+name: Use existing abc2svg script
+
+# Controls when the workflow will run
+on: workflow_dispatch
+
+jobs:
+  abctopdf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - run: pwd
+      - run: echo ${GITHUB_WORKSPACE}
+      - run: chmod +x converter/abcm2ps
+      - run: mkdir -p out
+      - run: |
+          for abcfile in in/*.abc; do \
+              [ -e "out/$abcfile.pdf" ] || continue \
+              converter/abcm2ps in/$abcfile.abc -o out/$abcfile.pdf \
+          done
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Save generated PDF
