@@ -1,0 +1,37 @@
+% newheads.fmt      -*- ps -*-
+
+% This format file provides slender note heads, 
+% i.e. less round than the default shape.
+% Tested with abcm2ps-8*
+
+% Written by Guido Gonzato, PhD
+% Version 1.4
+% Latest update: November 28, 2018
+% License: GNU GPL 2 or later
+
+beginps
+
+/Hd { % half note head
+  xymove
+  3.2 1.6 RM
+  -1  1.8 -7 -1.4 -6.5 -3.2 RC
+   1 -1.8  7  1.4  6.5  3.2 RC
+  0.5 0.3 RM
+   2 -3.8 -5 -6.7 -7.6 -3.8 RC
+  -2  3.8  5  6.7  7.6  3.8 RC
+  fill
+} !
+
+/ellipse { % draw an ellipse
+  30 rotate 5.5 3.5 scale
+  newpath 0 0 3.8 0 360 arc closepath fill
+} !
+
+/hd { % black note head
+  /x 2 index def /y 1 index def
+  gsave T .2 dup scale ellipse grestore
+} !
+
+endps
+
+% end of file newheads.fmt
