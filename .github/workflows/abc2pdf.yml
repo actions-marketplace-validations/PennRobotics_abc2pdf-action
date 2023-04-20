@@ -1,8 +1,9 @@
 name: abc2pdf
 
 on:
-  push:
-    branches: [ "main" ]
+  workflow_dispatch
+  #push:
+  #  branches: [ "main" ]
 
 jobs:
   checkforbinary:
