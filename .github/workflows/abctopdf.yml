@@ -9,7 +9,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: [ ! -e converter/abcm2ps ] && echo "Converter not compiled"
+      - run: |
+          [ ! -e converter/abcm2ps ] && echo "Converter not compiled"
 
       - uses: awalsh128/cache-apt-pkgs-action@latest
         with:
