@@ -38,30 +38,37 @@ jobs:
     runs-on: ubuntu-latest
     needs: checkforbinary
     steps:
-      - env:
-          NEEDSCOMPILING: ${{ needs.checkforbinary.outputs.needscompiling }}
-
       - uses: actions/checkout@v3
         with:
           submodules: 'true'
 
       - name: configure
+        env:
+          NEEDSCOMPILING: ${{ needs.checkforbinary.outputs.needscompiling }}
         run: |
           [ "$NEEDSCOMPILING" = "true" ] && cd abcm2ps && ./configure
 
       - name: make
+        env:
+          NEEDSCOMPILING: ${{ needs.checkforbinary.outputs.needscompiling }}
         run: |
           [ "$NEEDSCOMPILING" = "true" ] && make -C abcm2ps CFLAGS=-DA4_FORMAT=1
         
       - name: move abcm2ps out of submodule directory
+        env:
+          NEEDSCOMPILING: ${{ needs.checkforbinary.outputs.needscompiling }}
         run: |
           [ "$NEEDSCOMPILING" = "true" ] && mkdir -p converter && mv abcm2ps/abcm2ps converter/
 
       - name: create version snippet
+        env:
+          NEEDSCOMPILING: ${{ needs.checkforbinary.outputs.needscompiling }}
         run: |
           [ "$NEEDSCOMPILING" = "true" ] && converter/abcm2ps -V > converter/version.txt
 
       - name: Save SHA from abcm2ps repository
+        env:
+          NEEDSCOMPILING: ${{ needs.checkforbinary.outputs.needscompiling }}
         run: |
           [ "$NEEDSCOMPILING" = "true" ] && git ls-remote https://github.com/lewdlime/abcm2ps.git HEAD | cut -f1 > submodule-sha.txt
 
