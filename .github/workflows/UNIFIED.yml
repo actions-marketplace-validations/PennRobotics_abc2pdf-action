@@ -24,15 +24,15 @@ jobs:
       - name: Output to log if converter does not exist
         run: |
           [ ! -e "converter/abcm2ps" ] &&
-          echo Converter not found and should be now compiled ||
+          { echo Converter not found and should be now compiled; rm -f submodule-sha.txt; } ||
           chmod +x converter/abcm2ps
 
       - name: If SHA does not match or does not exist, compile and write current SHA to repo
         id: decision
         run: |
-          diff -N -q submodule-sha-cmp.txt submodule-sha.txt > /dev/null ||
-          { echo "Building binary"; echo "needscompiling=true" >> $GITHUB_OUTPUT; } &&
-          { echo "Compiled binary uses latest source"; echo "needscompiling=false" >> $GITHUB_OUTPUT; }
+          diff -N -q submodule-sha-cmp.txt submodule-sha.txt > /dev/null &&
+          { echo "Compiled binary uses latest source"; echo "needscompiling=false" >> $GITHUB_OUTPUT; } ||
+          { echo "Building binary"; echo "needscompiling=true" >> $GITHUB_OUTPUT; }
 
   compile:
     runs-on: ubuntu-latest
