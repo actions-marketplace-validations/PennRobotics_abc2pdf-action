@@ -1,6 +1,13 @@
-name: ABC to PDF
-author: Brian Wright
-description: Converts sheet music from ABC format to PDF
+name: 'ABC to PDF'
+description: 'Converts sheet music from ABC format to PDF'
+author: 'PennRobotics'
+inputs:
+  overwrite:
+    description: 'Overwrite existing PDFs'
+    default: true
+    # Small changes to tunes should result in new output files
+    # `git pull` should discard the unchanged files
+  # TODO: others here
 branding:
   icon: 'music'
   # alternate: book-open, file-text, layers, pen-tool, printer, type, zap
