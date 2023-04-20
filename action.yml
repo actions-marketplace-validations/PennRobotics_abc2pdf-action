@@ -1,0 +1,11 @@
+name: ABC to PDF
+author: Brian Wright
+description: Converts sheet music from ABC format to PDF
+branding:
+  icon: 'music'
+  # alternate: book-open, file-text, layers, pen-tool, printer, type, zap
+  color: 'green'
+runs:
+  using: 'composite'
+  steps:
+    - run: echo TEST
