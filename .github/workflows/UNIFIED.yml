@@ -31,8 +31,8 @@ jobs:
         id: decision
         run: |
           diff -N -q submodule-sha-cmp.txt submodule-sha.txt > /dev/null ||
-          { echo "Building binary"; echo "needscompiling=true" >> $GITHUB_OUTPUT } &&
-          { echo "Compiled binary uses latest source"; echo "needscompiling=false" >> $GITHUB_OUTPUT }
+          { echo "Building binary"; echo "needscompiling=true" >> $GITHUB_OUTPUT; } &&
+          { echo "Compiled binary uses latest source"; echo "needscompiling=false" >> $GITHUB_OUTPUT; }
 
   compile:
     runs-on: ubuntu-latest
