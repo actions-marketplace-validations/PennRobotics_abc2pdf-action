@@ -40,27 +40,30 @@ jobs:
     steps:
       - env:
           NEEDSCOMPILING: ${{ needs.checkforbinary.outputs.needscompiling }}
-        run: |
-          [ "$NEEDSCOMPILING" = "false" ] || exit 0
 
       - uses: actions/checkout@v3
         with:
           submodules: 'true'
 
       - name: configure
-        run: cd abcm2ps && ./configure
+        run: |
+          [ "$NEEDSCOMPILING" = "true" ] && cd abcm2ps && ./configure
 
       - name: make
-        run: make -C abcm2ps CFLAGS=-DA4_FORMAT=1
+        run: |
+          [ "$NEEDSCOMPILING" = "true" ] && make -C abcm2ps CFLAGS=-DA4_FORMAT=1
         
       - name: move abcm2ps out of submodule directory
-        run: mkdir -p converter && mv abcm2ps/abcm2ps converter/
+        run: |
+          [ "$NEEDSCOMPILING" = "true" ] && mkdir -p converter && mv abcm2ps/abcm2ps converter/
 
       - name: create version snippet
-        run: converter/abcm2ps -V > converter/version.txt
+        run: |
+          [ "$NEEDSCOMPILING" = "true" ] && converter/abcm2ps -V > converter/version.txt
 
       - name: Save SHA from abcm2ps repository
-        run: git ls-remote https://github.com/lewdlime/abcm2ps.git HEAD | cut -f1 > submodule-sha.txt
+        run: |
+          [ "$NEEDSCOMPILING" = "true" ] && git ls-remote https://github.com/lewdlime/abcm2ps.git HEAD | cut -f1 > submodule-sha.txt
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
