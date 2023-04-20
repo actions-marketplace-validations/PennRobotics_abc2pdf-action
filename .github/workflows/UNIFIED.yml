@@ -46,23 +46,23 @@ jobs:
 
       - name: configure
         run: |
-          [ "$NEEDSCOMPILING" = "true" ] && cd abcm2ps && ./configure
+          [ "$NEEDSCOMPILING" = "true" ] && cd abcm2ps && ./configure || echo Skipping step 
 
       - name: make
         run: |
-          [ "$NEEDSCOMPILING" = "true" ] && make -C abcm2ps CFLAGS=-DA4_FORMAT=1
+          [ "$NEEDSCOMPILING" = "true" ] && make -C abcm2ps CFLAGS=-DA4_FORMAT=1 || echo Skipping step 
         
       - name: move abcm2ps out of submodule directory
         run: |
-          [ "$NEEDSCOMPILING" = "true" ] && mkdir -p converter && mv abcm2ps/abcm2ps converter/
+          [ "$NEEDSCOMPILING" = "true" ] && mkdir -p converter && mv abcm2ps/abcm2ps converter/ || echo Skipping step 
 
       - name: create version snippet
         run: |
-          [ "$NEEDSCOMPILING" = "true" ] && converter/abcm2ps -V > converter/version.txt
+          [ "$NEEDSCOMPILING" = "true" ] && converter/abcm2ps -V > converter/version.txt || echo Skipping step 
 
       - name: Save SHA from abcm2ps repository
         run: |
-          [ "$NEEDSCOMPILING" = "true" ] && git ls-remote https://github.com/lewdlime/abcm2ps.git HEAD | cut -f1 > submodule-sha.txt
+          [ "$NEEDSCOMPILING" = "true" ] && git ls-remote https://github.com/lewdlime/abcm2ps.git HEAD | cut -f1 > submodule-sha.txt || echo Skipping step 
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
