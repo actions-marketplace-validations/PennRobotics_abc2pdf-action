@@ -59,8 +59,8 @@ jobs:
       - name: create version snippet
         run: converter/abcm2ps -V > converter/version.txt
 
-      - name: save SHA from abcm2ps repo
-        run: cp submodule-sha-cmp.txt submodule-sha.txt
+      - name: Save SHA from abcm2ps repository
+        run: git ls-remote https://github.com/lewdlime/abcm2ps.git HEAD | cut -f1 > submodule-sha.txt
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
