@@ -1,81 +1,51 @@
 name: abc2pdf
 
-# Controls when the workflow will run
-on: workflow_dispatch
+on:
+  push:
+    branches: [ "main" ]
 
 jobs:
-  abctopdf:
+  checkforbinary:
     runs-on: ubuntu-latest
+    outputs:
+      needscompiling: ${{ steps.decision.outputs.needscompiling }}
     steps:
       - uses: actions/checkout@v3
-
-      - run: [ ! -e converter/abcm2ps ] && echo "Converter not compiled"
+        with:
+          submodules: 'true'
 
       - uses: awalsh128/cache-apt-pkgs-action@latest
         with:
-          packages: ghostscript
-      - run: chmod +x converter/abcm2ps
-      - run: mkdir -p out
-      - run: |
-          for abcfile in in/*.abc; do \
-              [ -e "out/`basename $abcfile .abc`.pdf" ] && continue; \
-              converter/abcm2ps $abcfile; \
-              ps2pdf Out.ps "out/`basename $abcfile .abc`.pdf"; \
-              rm Out.ps; \
-          done
-
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Save generated PDF
-
-
-on:
-  #push:
-  #  branches: [ "main" ]
-  workflow_dispatch:
-
-jobs:
-  check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+          packages: ghostscript build-essential
 
       - name: Save SHA for present-day abcm2ps repository for comparison
         run: git ls-remote https://github.com/lewdlime/abcm2ps.git HEAD | cut -f1 > submodule-sha-cmp.txt
 
-      - name: If SHA does not match or does not exist, compile and write current SHA to repo
+      - name: Output to log if converter does not exist
         run: |
-          diff -N -q submodule-sha-cmp.txt submodule-sha.txt > /dev/null &&
-          echo Compiled binary uses latest source ||
-          {
-            echo make
-            echo cp submodule-sha-cmp.txt submodule-sha.txt
-            cat submodule-sha-cmp.txt
-          }
-        # TODO-debug: remove `cat ...`
+          [ ! -e "converter/abcm2ps" ] &&
+          echo Converter not found and should be now compiled ||
+          chmod +x converter/abcm2ps
 
-      # TODO: commit compiled binary and SHA
+      - name: If SHA does not match or does not exist, compile and write current SHA to repo
+        id: decision
+        run: |
+          diff -N -q submodule-sha-cmp.txt submodule-sha.txt > /dev/null ||
+          { echo "Building binary"; echo "needscompiling=true" >> $GITHUB_OUTPUT } &&
+          { echo "Compiled binary uses latest source"; echo "needscompiling=false" >> $GITHUB_OUTPUT }
 
-
-on: workflow_call
-
-defaults:
-  run:
-    shell: bash
-
-jobs:
-  build:
-    name: Build abcm2ps
+  compile:
     runs-on: ubuntu-latest
-
+    needs: checkforbinary
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+      - env:
+          NEEDSCOMPILING: ${{ needs.checkforbinary.outputs.needscompiling }}
+        run: |
+          [ "$NEEDSCOMPILING" = "false" ] || exit 0
+
+      - uses: actions/checkout@v3
         with:
           submodules: 'true'
-
-      - name: Prepare compilation prerequisites
-        run: sudo apt-get install build-essential
 
       - name: configure
         run: cd abcm2ps && ./configure
@@ -89,37 +59,27 @@ jobs:
       - name: create version snippet
         run: converter/abcm2ps -V > converter/version.txt
 
+      - name: save SHA from abcm2ps repo
+        run: cp submodule-sha-cmp.txt submodule-sha.txt
+
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Commit compiled abcm2ps (A4 output)
-          file_pattern: 'converter/abcm2ps converter/version.txt'
+          file_pattern: 'converter/abcm2ps converter/version.txt submodule-sha.txt'
 
-
-on:
-  workflow_dispatch:
-    inputs:
-      filename:
-        type: string
-        description: ABC name without path or extension
-        required: true
-
-jobs:
-  abctopdf:
+  convert:
+    needs: compile
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      - uses: awalsh128/cache-apt-pkgs-action@latest
-        with:
-          packages: ghostscript
-      - run: chmod +x converter/abcm2ps
-      - run: mkdir -p out
       - run: |
-            [ -e "in/${{ github.event.inputs.filename }}.abc" ] || exit 1 ; \
-            converter/abcm2ps in/${{ github.event.inputs.filename }}.abc ; \
-            ps2pdf Out.ps "out/${{ github.event.inputs.filename }}.pdf" ; \
-            rm Out.ps; \
+          for abcfile in in/*.abc; do \
+              [ -e "out/`basename $abcfile .abc`.pdf" ] && continue; \
+              converter/abcm2ps $abcfile; \
+              ps2pdf Out.ps "out/`basename $abcfile .abc`.pdf"; \
+              rm Out.ps; \
+          done
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Save generated PDF          
+          commit_message: Save generated PDF
