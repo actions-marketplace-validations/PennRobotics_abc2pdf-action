@@ -14,10 +14,6 @@ jobs:
         with:
           submodules: 'true'
 
-      - uses: awalsh128/cache-apt-pkgs-action@latest
-        with:
-          packages: ghostscript build-essential
-
       - name: Save SHA for present-day abcm2ps repository for comparison
         run: git ls-remote https://github.com/lewdlime/abcm2ps.git HEAD | cut -f1 > submodule-sha-cmp.txt
 
@@ -74,6 +70,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+      - uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: ghostscript
+
       - run: |
           for abcfile in in/*.abc; do \
               [ -e "out/`basename $abcfile .abc`.pdf" ] && continue; \
