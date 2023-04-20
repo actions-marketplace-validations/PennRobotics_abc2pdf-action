@@ -1,0 +1,46 @@
+%%papersize    A4
+
+%%pageheight   842pt
+%%pagewidth    595pt
+%%topmargin    28pt
+%%botmargin    24pt
+%%leftmargin   36pt
+%%rightmargin  36pt
+%%indent       36pt
+%%landscape    false
+
+%%titlefont      Times-Roman 24
+%%subtitlefont   Times-Roman 18
+%%composerfont   Times-Roman 14
+%%partsfont      Times-Roman 14
+%%tempofont      Times-Roman 14
+%%gchordfont     Times-Roman 14
+%%annotationfont Times-Roman 14
+%%infofont       Times-Roman 14
+%%textfont       Times-Roman 14
+%%vocalfont      Times-Roman 14
+%%wordsfont      Times-Roman 14
+
+%%topspace       22pt
+%%titlespace     6pt
+%%subtitlespace  4pt
+%%composerspace  6pt
+%%musicspace     6pt
+%%partsspace     10pt
+%%vocalspace     22pt
+%%wordsspace     14pt
+%%textspace      14pt
+%%infospace      0pt
+%%staffsep       44pt
+%%sysstaffsep    36pt
+%%barsperstaff   0
+%%parskipfac     0.4
+%%lineskipfac    1.1
+%%stretchstaff   1
+%%stretchlast    0
+%%maxshrink      0.65
+%%scale          0.8
+
+%%measurenb     -1
+%%measurebox    1
+%%setbarnb      1
