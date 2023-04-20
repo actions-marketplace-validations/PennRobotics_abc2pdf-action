@@ -76,6 +76,9 @@ jobs:
           packages: ghostscript
 
       - run: |
+          [ -d in ] && [ ! -d out ] && mkdir -p out
+
+      - run: |
           for abcfile in in/*.abc; do \
               [ -e "out/`basename $abcfile .abc`.pdf" ] && continue; \
               converter/abcm2ps $abcfile; \
