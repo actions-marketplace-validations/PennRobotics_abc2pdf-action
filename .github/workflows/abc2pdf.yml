@@ -83,7 +83,7 @@ jobs:
           packages: ghostscript
 
       - run: |
-          [ -d in ] && [ ! -d out ] && mkdir -p out
+          [ -d in ] && [ ! -d out ] && mkdir -p out || echo "Note: No input or output dir already exists"
 
       - run: |
           for abcfile in in/*.abc; do \
