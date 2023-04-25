@@ -6,10 +6,11 @@ beginps nosvg
 		T -7.5 0 M -.042 mul 3 exch scale
 		/uniE000 glyphshow
 	grestore}!
-/tclef{/Bravura 24 selectfont M -8 6 RM/uniE050 glyphshow}!
-/cclef{/Bravura 24 selectfont M -8 12 RM/uniE05C glyphshow}!
-/bclef{/Bravura 24 selectfont M -8 18 RM/uniE062 glyphshow}!
-/csig{/Bravura 24 selectfont M -5 12 RM/uniE08A glyphshow}!
+/tclef{/Bravura 24 selectfont M -8 0 RM/uniE050 glyphshow}!
+/cclef{/Bravura 24 selectfont M -8 0 RM/uniE05C glyphshow}!
+/bclef{/Bravura 24 selectfont M -8 0 RM/uniE062 glyphshow}!
+/csig{/Bravura 24 selectfont M -5 0 RM/uniE08A glyphshow}!
+/ctsig{/Bravura 24 selectfont M -5 0 RM/uniE084 glyphshow}!
 /ft0{/Bravura 24 selectfont M -2 0 RM/uniE260 glyphshow}!
 /nt0{/Bravura 24 selectfont M -2 0 RM/uniE261 glyphshow}!
 /sh0{/Bravura 24 selectfont M -2 0 RM/uniE262 glyphshow}!
