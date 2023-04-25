@@ -38,11 +38,11 @@ deco D.S. 3 dsgn    16 10 10
 
 % extension: optional accidentals
 % !(b)! !(=)! !(#)! !(bb)! !(x)! 
-deco (b)  3 optflt  16 0 0
-deco (=)  3 optnat  16 0 0
-deco (#)  3 optshp  16 0 0
-deco (bb) 3 optdflt 16 0 0
-deco (x)  3 optdshp 16 0 0
+%deco (b)  3 optflt  16 0 0
+%deco (=)  3 optnat  16 0 0
+%deco (#)  3 optshp  16 0 0
+%deco (bb) 3 optdflt 16 0 0
+%deco (x)  3 optdshp 16 0 0
 
 % extension: optional dynamics
 % !(f)! !(p)! 
@@ -63,23 +63,23 @@ beginps
   /mussel { music 24 selectfont } !
 
   % clefs
-  /tclef  { M -4 0 RM /uniE050 musgly } ! % treble clef
-  /cclef  { M -4 0 RM /uniE05C musgly } ! % C clef
-  /bclef  { M -4 0 RM /uniE062 musgly } ! % F clef
-  /pclef  { M -4 0 RM /uniE06A musgly } ! % unpitched clef
-  /stclef { M -4 0 RM /uniE07A musgly } ! % treble clef change
-  /scclef { M -4 0 RM /uniE07B musgly } ! % C clef change
-  /sbclef { M -4 0 RM /uniE07C musgly } ! % F clef change
-  /spclef { M -4 0 RM /uniE06A musgly } ! % unpitched clef change
+  /tclef  { M 0 0 RM /uniE050 musgly } ! % treble clef
+  /cclef  { M 0 0 RM /uniE05C musgly } ! % C clef
+  /bclef  { M 0 0 RM /uniE062 musgly } ! % F clef
+  /pclef  { M 0 0 RM /uniE06A musgly } ! % unpitched clef
+  /stclef { M 0 0 RM /uniE07A musgly } ! % treble clef change
+  /scclef { M 0 0 RM /uniE07B musgly } ! % C clef change
+  /sbclef { M 0 0 RM /uniE07C musgly } ! % F clef change
+  /spclef { M 0 0 RM /uniE06A musgly } ! % unpitched clef change
   
   % these were implemented as simple text strings
-  /brth   { M -4 0 RM /uniE096 musgly } ! % breath
-  /trl    { M -4 0 RM /uniE566 musgly } ! % trill
+  /brth   { M 0 0 RM /uniE096 musgly } ! % breath
+  /trl    { M 0 0 RM /uniE566 musgly } ! % trill
   % fix misplaced invertedturnx and turnx
-  /turnx  { M -4 0 RM /uniE569 musgly } ! % turnx
+  /turnx  { M 0 0 RM /uniE569 musgly } ! % turnx
   % bowing
-  /dnb    { M -4 0 RM /uniE610 musgly } ! % downbow
-  /upb    { M -4 0 RM /uniE612 musgly } ! % upbow
+  /dnb    { M 0 0 RM /uniE610 musgly } ! % downbow
+  /upb    { M 0 0 RM /uniE612 musgly } ! % upbow
   % these were implemented as simple text strings
   /f      { M -4 0 RM /uniE522 musgly } ! % f
   /ff     { M -4 0 RM /uniE52F musgly } ! % ff
@@ -96,15 +96,15 @@ beginps
   /dsgn   { M -4 0 RM /uniE045 musgly } ! % D.S.
   
   % optional accidentals
-  /optflt { mussel M -4 0 RM /uniE26A gsw 
-             /uniE260 gsw -1.4 0 RM /uniE26B gsw } !    % (b)
-  /optnat { mussel M -4 0 RM
+  /optflt { mussel M 0 0 RM /uniE26A gsw 
+             /uniE260 gsw 0 0 RM /uniE26B gsw } !    % (b)
+  /optnat { mussel M 0 0 RM
              /uniE26A gsw /uniE261 gsw /uniE26B gsw } ! % (=)
-  /optshp { mussel M -4 0 RM
+  /optshp { mussel M 0 0 RM
              /uniE26A gsw /uniE262 gsw /uniE26B gsw } ! % (#)
-  /optdflt{ mussel M -4 0 RM /uniE26A gsw 
-             /uniE264 gsw -1.4 0 RM /uniE26B gsw } !    % (bb)
-  /optdshp{ mussel M -4 0 RM
+  /optdflt{ mussel M 0 0 RM /uniE26A gsw 
+             /uniE264 gsw 0 0 RM /uniE26B gsw } !    % (bb)
+  /optdshp{ mussel M 0 0 RM
              /uniE26A gsw /uniE263 gsw /uniE26B gsw } ! % (x)
 
   % optional dynamics
