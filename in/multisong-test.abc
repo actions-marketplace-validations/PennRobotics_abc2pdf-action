@@ -1,0 +1,28 @@
+%%abc-include format/test.abc
+
+X: 1
+T: Good King Wenceslas
+M: 4/4
+L: 1/4
+C: Traditional
+K: F
+|: FFFG | FF C2 | DCDE | F2 F2 :|
+   cBAG | AG F2 | DCDE | F2 F2 |
+   CCDE | FF G2 | cBAG | F2 B2 | F4 ||
+
+X: 2
+T: Ragtime Outro
+M: 4/4
+L: 1/8
+C: probably Joplin
+K: Bb
+z2 [_ABf]b [GB=e]b [_GB_e]b | [FBd]2 z2 {fga}[Bdfb]4 ||
+
+X: 3
+T: The Moving Pint
+R: reel
+M: 4/4
+L: 1/8
+K: G
+G3B A3d | B2BA BGEF | GABG A2 (3Bcd | eA (3cBA EA (3cBA |
+G3B A^GAd | B2BA BE~E2 | GABG ABcd | ecAF G4 ||
