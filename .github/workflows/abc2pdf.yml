@@ -88,8 +88,8 @@ jobs:
       - run: |
           for abcfile in in/*.abc; do \
               [ -e "out/`basename $abcfile .abc`.pdf" ] && continue; \
-              converter/abcm2ps -F format/thinlines.fmt -F format/newheads.fmt $abcfile; \
-              ps2pdf Out.ps "out/`basename $abcfile .abc`.pdf"; \
+              converter/abcm2ps -F format/thinlines.fmt -F format/newheads.fmt -F format/bravura.fmt $abcfile; \
+              ps2pdf -sFONTPATH=format Out.ps "out/`basename $abcfile .abc`.pdf"; \
               rm Out.ps; \
           done
 
