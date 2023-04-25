@@ -1,0 +1,122 @@
+% bravura.fmt      -*- ps -*-
+
+% This format file provides Bravura-based glyphs.
+% It assumes that the free font Bravura.otf, available at
+% https://www.smufl.org/fonts/, is installed and visible
+% to GhostScript.
+
+% Written by Guido Gonzato, PhD,
+% and Jean-François Moine
+% Version 1.0.3
+% Latest update: November 23, 2018
+
+% License: GNU GPL 2 or later
+% Tested with abcm2ps-8*
+
+% Browse the glyphs here:
+% https://www.smufl.org/version/
+% In addition to Bravura, other SMuFL-compliant fonts can be used.
+% However, optional accidentals and dynamics may need some adjustment.
+
+musicfont local(Bravura.otf)
+
+% redefine dynamics decorations. By default, these are 
+% string-based (/pf) so they can't simply use the new glyphs.
+deco p    6 p       18 0 20
+deco pp   6 pp      18 2 20
+deco ppp  6 ppp     18 4 20
+deco pppp 6 pppp    18 8 20
+deco f    6 f       18 0 20
+deco ff   6 ff      18 2 20
+deco fff  6 fff     18 4 20
+deco ffff 6 ffff    18 8 20
+deco mf   6 mf      18 2 20
+deco mp   6 mp      18 2 20
+deco sfz  6 sfz     18 4 20
+deco D.C. 3 dcap    16 10 10
+deco D.S. 3 dsgn    16 10 10
+
+% extension: optional accidentals
+% !(b)! !(=)! !(#)! !(bb)! !(x)! 
+deco (b)  3 optflt  16 0 0
+deco (=)  3 optnat  16 0 0
+deco (#)  3 optshp  16 0 0
+deco (bb) 3 optdflt 16 0 0
+deco (x)  3 optdshp 16 0 0
+
+% extension: optional dynamics
+% !(f)! !(p)! 
+deco (f)  6 optf    18 0 20
+deco (ff) 6 optff   18 2 20
+deco (p)  6 optp    18 0 20
+deco (pp) 6 optpp   18 2 20
+
+% redefine PS routines to use the music font
+beginps
+
+  /gsw/glyphshow   load def
+  
+  % print music glyph. 'music' is replaced by the font name
+  % defined in %%musicfont
+  /musgly { music 24 selectfont glyphshow } !
+  % I love mussels
+  /mussel { music 24 selectfont } !
+
+  % clefs
+  /tclef  { M -4 0 RM /uniE050 musgly } ! % treble clef
+  /cclef  { M -4 0 RM /uniE05C musgly } ! % C clef
+  /bclef  { M -4 0 RM /uniE062 musgly } ! % F clef
+  /pclef  { M -4 0 RM /uniE06A musgly } ! % unpitched clef
+  /stclef { M -4 0 RM /uniE07A musgly } ! % treble clef change
+  /scclef { M -4 0 RM /uniE07B musgly } ! % C clef change
+  /sbclef { M -4 0 RM /uniE07C musgly } ! % F clef change
+  /spclef { M -4 0 RM /uniE06A musgly } ! % unpitched clef change
+  
+  % these were implemented as simple text strings
+  /brth   { M -4 0 RM /uniE096 musgly } ! % breath
+  /trl    { M -4 0 RM /uniE566 musgly } ! % trill
+  % fix misplaced invertedturnx and turnx
+  /turnx  { M -4 0 RM /uniE569 musgly } ! % turnx
+  % bowing
+  /dnb    { M -4 0 RM /uniE610 musgly } ! % downbow
+  /upb    { M -4 0 RM /uniE612 musgly } ! % upbow
+  % these were implemented as simple text strings
+  /f      { M -4 0 RM /uniE522 musgly } ! % f
+  /ff     { M -4 0 RM /uniE52F musgly } ! % ff
+  /fff    { M -4 0 RM /uniE530 musgly } ! % fff
+  /ffff   { M -4 0 RM /uniE531 musgly } ! % ffff
+  /p      { M -4 0 RM /uniE520 musgly } ! % p
+  /pp     { M -4 0 RM /uniE52B musgly } ! % pp
+  /ppp    { M -4 0 RM /uniE52A musgly } ! % ppp
+  /pppp   { M -4 0 RM /uniE529 musgly } ! % pppp
+  /mf     { M -4 0 RM /uniE52D musgly } ! % mf
+  /mp     { M -4 0 RM /uniE52C musgly } ! % mp
+  /sfz    { M -4 0 RM /uniE539 musgly } ! % sfz
+  /dcap   { M -4 0 RM /uniE046 musgly } ! % D.C.
+  /dsgn   { M -4 0 RM /uniE045 musgly } ! % D.S.
+  
+  % optional accidentals
+  /optflt { mussel M -4 0 RM /uniE26A gsw 
+             /uniE260 gsw -1.4 0 RM /uniE26B gsw } !    % (b)
+  /optnat { mussel M -4 0 RM
+             /uniE26A gsw /uniE261 gsw /uniE26B gsw } ! % (=)
+  /optshp { mussel M -4 0 RM
+             /uniE26A gsw /uniE262 gsw /uniE26B gsw } ! % (#)
+  /optdflt{ mussel M -4 0 RM /uniE26A gsw 
+             /uniE264 gsw -1.4 0 RM /uniE26B gsw } !    % (bb)
+  /optdshp{ mussel M -4 0 RM
+             /uniE26A gsw /uniE263 gsw /uniE26B gsw } ! % (x)
+
+  % optional dynamics
+  /optf  { mussel M -8 0  RM /uniE26A gsw 3 -2   RM
+             /uniE522 gsw 0 2 RM /uniE26B gsw } !       % (f)
+  /optff { mussel M -11 0 RM /uniE26A gsw 1.5 -2 RM
+             /uniE52F gsw 0 2 RM /uniE26B gsw } !       % (ff)
+  /optp  { mussel M -8 0  RM /uniE26A gsw 1.5 -1 RM
+             /uniE520 gsw 0 1 RM /uniE26B gsw } !       % (p)
+  /optpp { mussel M -11 0 RM /uniE26A gsw 1.5 -1 RM
+             /uniE52B gsw 0 1 RM /uniE26B gsw } !       % (pp)
+
+endps
+
+% end of file bravura.fmt
