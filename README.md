@@ -1,6 +1,6 @@
 # abc2pdf
 
-_Github Action for Engraving Sheet Music from ABC_
+_[Github Action for Engraving Sheet Music from ABC](https://github.com/marketplace/actions/abc-to-pdf)_
 
 > **Warning**  
 > Currently, the correct workflow is _de-commented-out_ and run manually through the "Actions" tab. It needs to move to **action.yml**
