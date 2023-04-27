@@ -1,0 +1,29 @@
+name: abc2svg2pdf (branch)
+
+on:
+  workflow_dispatch
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'true'
+
+      - uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: libjavascriptcoregtk-4.0-bin weasyprint
+
+      - run: |
+          [ -d in ] && [ ! -d out ] && mkdir -p out || echo ""
+
+      - run: |
+          for abcfile in in/*.abc; do \
+              [ -e "out/`basename $abcfile .abc`.pdf" ] && continue; \
+              converter/abctopdf $abcfile -o "out/`basename $abcfile .abc`.pdf"; \
+          done
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Save generated PDF

@@ -1,3 +1,0 @@
-abcm2ps-8.14.14 (2022-12-19)
-Options: A4_FORMAT
-Default format directory: /usr/local/share/abcm2ps
