@@ -3,7 +3,8 @@
 _[Github Action for Engraving Sheet Music from ABC](https://github.com/marketplace/actions/abc-to-pdf)_
 
 > **Warning**  
-> Currently, the correct workflow is _de-commented-out_ and run manually through the "Actions" tab. It needs to move to **action.yml**
+> Currently, the correct workflow needs to be _de-commented-out_ and run manually through the "Actions" tab.  
+> Some of these steps need to move to **action.yml**
 
 
 ## TODO
