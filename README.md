@@ -9,6 +9,7 @@ _[Github Action for Engraving Sheet Music from ABC](https://github.com/marketpla
 ## TODO
 
 - [X] `Error: PennRobotics/abc2pdf-action/first-nonworking-draft/action.yml (Line: 18, Col: 7): Required property is missing: shell`
+- [ ] Fix any blockers in the [Eventual quick start](#eventual-quick-start) and delete the other two quick start sections
 
 
 ## Quick start
