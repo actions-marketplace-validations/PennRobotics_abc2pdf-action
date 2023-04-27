@@ -2,6 +2,10 @@ name: 'ABC to PDF'
 description: 'Converts sheet music from ABC format to PDF'
 author: 'PennRobotics'
 inputs:
+  input:
+    description: Path to notation input file with ABC extension
+  output:
+    description: Desired path and filename of PDF output
   overwrite:
     description: 'Overwrite existing PDFs'
     default: true
@@ -16,3 +20,4 @@ runs:
   using: 'composite'
   steps:
     - run: echo TEST
+      shell: bash
