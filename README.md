@@ -6,6 +6,11 @@ _Github Action for Engraving Sheet Music from ABC_
 > Currently, the correct workflow is _de-commented-out_ and run manually through the "Actions" tab. It needs to move to **action.yml**
 
 
+## TODO
+
+- [ ] `Error: PennRobotics/abc2pdf-action/first-nonworking-draft/action.yml (Line: 18, Col: 7): Required property is missing: shell`
+
+
 ## Quick start
 
 * Fork, clone, or import the [abc2pdf-action repository](https://github.com/PennRobotics/abc2pdf-action.git)
