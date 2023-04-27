@@ -2,6 +2,9 @@
 
 _Github Action for Engraving Sheet Music from ABC_
 
+> **Warning**  
+> Currently, the correct workflow is _de-commented-out_ and run manually through the "Actions" tab. It needs to move to **action.yml**
+
 
 ## Quick start
 
